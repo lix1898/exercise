@@ -1,0 +1,41 @@
+
+server:
+  port: 9081
+  servlet:
+    context-path: /
+
+spring:
+  devtools: #开起热加载
+    restart:
+      enabled: true
+  application:
+    name: rabbitmq-test
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  rabbitmq:    # Spring-RabbitMq 参数配置详解：https://blog.csdn.net/girlgolden/article/details/97915368
+    host: localhost
+    port: 5672
+    virtual-host: /xiaoyao
+    username: xiaoyao
+    password: xiaoyao
+    listener:
+      direct:
+        acknowledge-mode: auto # ack 确认机制
+      simple: # 如果代码里没有手动指定消费者的监听容器 ，默认Spring为自动生成一个SimpleMessageListenerContainer，此时这个配置生效
+        acknowledge-mode: none # ack 确认机制
+        # NONE：无应答，rabbitmq默认consumer正确处理所有请求。
+        # AUTO：consumer自动应答，处理成功（注意：此处的成功确认是没有发生异常）发出ack，处理失败发出nack。rabbitmq发出消息后会等待consumer端应答，只有收到ack确定信息后才会将消息在rabbitmq清除掉。收到nack异常信息的处理方法由setDefaultRequeueReject()方法设置，这种模式下，发送错误的消息可以恢复。
+        # MANUAL：基本等同于AUTO模式，区别是需要人为调用方法确认。
+        prefetch: 1
+    publisher-confirm-type: correlated # 发布者提交确认方式
+    publisher-returns: true # 消息路由失败，回调
+
+logging:
+  file:
+    path: ./logs
+  base_name: ${spring.application.name}  # 这个配置在logback-spring.xml 中使用了
+  level:
+    root: info
+    org.springframework.boot.autoconfigure: error
+    com.itkjb: debug
