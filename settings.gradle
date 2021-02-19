@@ -6,4 +6,5 @@
 //}
 rootProject.name = 'exercise'
 include 'rabbitmq-helloword'
+include 'mongodb-hellowrod'
 

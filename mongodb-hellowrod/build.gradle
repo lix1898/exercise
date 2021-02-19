@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+}
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+    compile(
+            lib.'spring-boot-starter',
+            "org.springframework.data:spring-data-mongodb"
+    )
+}

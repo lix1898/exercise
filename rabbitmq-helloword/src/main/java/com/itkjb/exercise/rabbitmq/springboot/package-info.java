@@ -13,7 +13,7 @@
  *     config 包-> 中 什么了队列和交换机，以及指定了交换机和队列的绑定关系 <br/>
  *     producer包 ->  主要模拟消息发送  <br/>
  *     consumer包 -> 负责消息的接收  <br/>
- *     model 中 简单的封装了一个消息体 <br/>
+ *     po 中 简单的封装了一个消息体 <br/>
  * </p>
  */
 package com.itkjb.exercise.rabbitmq.springboot;
