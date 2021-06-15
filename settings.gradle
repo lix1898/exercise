@@ -7,4 +7,7 @@
 rootProject.name = 'exercise'
 include 'rabbitmq-helloword'
 include 'mongodb-hellowrod'
+// include 'java-se'
+include 'java-se'
+include 'leetcode'
 
